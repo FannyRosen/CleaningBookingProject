@@ -19,8 +19,10 @@ app.set("view engine", "hbs");
 
 app.use(express.static("public"));
 
+app.use(cookieParser());
+
 app.get("/", (req, res) => {
-  res.render("home");
+  res.render("register");
 });
 
 app.use((req, res, next) => {
@@ -31,6 +33,7 @@ app.use((req, res, next) => {
 
     res.locals.loggedIn = true;
     res.locals.username = tokenData.username;
+    res.locals.id = tokenData.userId;
   } else {
     res.locals.loggedIn = false;
   }
@@ -42,11 +45,11 @@ app.post("/", (req, res) => {
 
   UsersModel.findOne({ username }, async (err, user) => {
     if (user) {
-      return res.status(400).render("home", {
+      return res.status(400).render("register", {
         error: "Användarnamnet är upptaget.",
       });
     } else if (password !== confirmPassword) {
-      return res.status(400).render("home", {
+      return res.status(400).render("register", {
         error: "Lösenorden matchar inte, vänligen försök igen.",
       });
     } else {
@@ -66,12 +69,14 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
-app.post("/login", (req, res) => {
+app.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
+  console.log(password, username);
+
   UsersModel.findOne({ username }, (err, user) => {
-    if (user && utils.comparePassword(password, user.password)) {
-      const userData = { userId: user._id.toString(), username };
+    if (user && utils.comparePassword(password, user.hashedPassword)) {
+      const userData = { username, userId: user._id.toString() };
       const accessToken = jwt.sign(userData, process.env.JWTSECRET);
 
       res.cookie("token", accessToken);

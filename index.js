@@ -3,8 +3,8 @@ require("./mongoose");
 
 const express = require("express");
 const exphbs = require("express-handlebars");
-// const jwt = require("jsonwebtoken");
-// const cookieParser = require("cookie-parser");
+const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 
 const UsersModel = require("./models/UsersModel.js");
 const utils = require("./utils");
@@ -44,6 +44,26 @@ app.post("/", (req, res) => {
       await newUser.save();
 
       res.sendStatus(200);
+    }
+  });
+});
+
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+app.post("/login", (req, res) => {
+  const { username, password } = req.body;
+
+  UsersModel.findOne({ username }, (err, user) => {
+    if (user && utils.comparePassword(password, user.password)) {
+      const userData = { userId: user._id.toString(), username };
+      const accessToken = jwt.sign(userData, process.env.JWTSECRET);
+
+      res.cookie("token", accessToken);
+      res.redirect("/");
+    } else {
+      res.render("/login", { error: "Wrong username or password" });
     }
   });
 });

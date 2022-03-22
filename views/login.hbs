@@ -1,18 +1,32 @@
+<div class="auth-header">
+  <header>STÄDA FINT</header>
+</div>
+
 <div>
 
-  <div>
+  <div class="main-register-container">
+    <br />
     <h2>Login</h2>
+    <br />
+
     <form action="/login" method="post">
-      <div>
-        <input type="text" name="username" placeholder=" " />
-        <span>Username</span>
+      <div class="form-group">
+        <input class="input" type="text" name="username" placeholder=" " />
+        <span class="label">Username</span>
       </div>
-      <div>
-        <input type="password" name="password" placeholder=" " />
-        <span>Password</span>
+      <br />
+
+      <div class="form-group">
+        <input class="input" type="password" name="password" placeholder=" " />
+        <span class="label">Password</span>
       </div>
+      <br />
+
       <p>{{error}}</p>
-      <button type="submit">Login</button>
+      <button class="btn" type="submit">Login</button>
+      <br />
+
+      <a class="auth-a" href="/">Skapa ett konto!</a>
 
     </form>
   </div>

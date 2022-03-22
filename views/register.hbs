@@ -1,4 +1,4 @@
-<div>
+<div class="auth-header">
   <header>STÄDA FINT</header>
 </div>
 
@@ -8,28 +8,45 @@
   <p class="error">{{error}}</p>
 
   <form action="/" method="post">
-    <input
-      type="text"
-      name="username"
-      placeholder="Användarnamn"
-      class="form"
-    />
+    <div class="form-group">
+
+      <input
+        type="text"
+        name="username"
+        placeholder=" "
+        id="username"
+        class="input"
+      />
+      <span class="label" for="username">Användarnamn</span>
+    </div>
+
     <br />
-    <input
-      type="password"
-      name="password"
-      placeholder="Lösenord"
-      class="form"
-    />
+    <div class="form-group">
+
+      <input
+        id="pass"
+        type="password"
+        name="password"
+        placeholder=" "
+        class="input"
+      />
+      <span class="label" for="pass">Lösenord</span>
+    </div>
+
     <br />
-    <input
-      type="password"
-      name="confirmPassword"
-      placeholder="Bekräfta lösenord"
-      class="form"
-    />
+    <div class="form-group">
+
+      <input
+        type="password"
+        name="confirmPassword"
+        placeholder=" "
+        class="input"
+        id="confirm"
+      />
+      <span class="label" for="confirm">Bekräfta lösenord</span>
+    </div>
     <br />
     <input type="submit" value="Skapa" class="btn" />
   </form>
+  <a class="auth-a" href="/login">Har du redan ett konto?</a>
 </div>
-<a href="/login">Eller logga in</a>

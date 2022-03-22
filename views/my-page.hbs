@@ -1,0 +1,39 @@
+<h2> {{username}} </h2>
+
+{{#each usersBookings}}
+
+  <div class="all-bookings">
+
+    {{#if done}}
+
+      <h3>Kommande städningar</h3>
+
+      <div class="upcoming-bookings">
+
+        <p>{{date}}</p>
+        <p>{{type}}</p>
+
+      </div>
+
+    {{else}}
+
+      <div class="finished-bookings">
+
+        <h3>Färdiga städningar</h3>
+
+        <p>{{date}}</p>
+        <p>{{type}}</p>
+
+        {{#if approved}}
+          <p>Godkänd</p>
+        {{else}}
+          <p>Icke godkänd</p>
+        {{/if}}
+
+      </div>
+
+    {{/if}}
+
+  </div>
+
+{{/each}}

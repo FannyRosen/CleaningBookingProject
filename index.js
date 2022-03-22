@@ -23,6 +23,20 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
+app.use((req, res, next) => {
+  const { token } = req.cookies;
+
+  if (token && jwt.verify(token, process.env.JWTSECRET)) {
+    const tokenData = jwt.decode(token, process.env.JWTSECRET);
+
+    res.locals.loggedIn = true;
+    res.locals.username = tokenData.username;
+  } else {
+    res.locals.loggedIn = false;
+  }
+  next();
+});
+
 app.post("/", (req, res) => {
   const { username, password, confirmPassword } = req.body;
 

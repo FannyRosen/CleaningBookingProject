@@ -62,6 +62,11 @@ app.post("/", (req, res) => {
   });
 });
 
+app.post("/logout", async (req, res) => {
+  res.cookie("token", "", { maxAge: 0 });
+  res.redirect("/");
+});
+
 app.use("/", (req, res) => {
   res.status(404).render("not-found");
 });

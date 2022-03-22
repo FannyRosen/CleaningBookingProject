@@ -72,15 +72,13 @@ app.get("/login", (req, res) => {
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
-  console.log(password, username);
-
   UsersModel.findOne({ username }, (err, user) => {
     if (user && utils.comparePassword(password, user.hashedPassword)) {
       const userData = { username, userId: user._id.toString() };
       const accessToken = jwt.sign(userData, process.env.JWTSECRET);
 
       res.cookie("token", accessToken);
-      res.redirect("/");
+      res.redirect("/home");
     } else {
       res.render("/login", { error: "Wrong username or password" });
     }
@@ -90,6 +88,18 @@ app.post("/login", async (req, res) => {
 app.post("/logout", async (req, res) => {
   res.cookie("token", "", { maxAge: 0 });
   res.redirect("/");
+});
+
+app.get("/my-page", (req, res) => {
+  // const bookings = BookingsModel.find().lean()
+
+  const usersBookings = [];
+
+  // bookings.forEach((item) => {
+  //   if (item.customer === res.locals.id) usersBookings.push(item);
+  // });
+
+  res.render("my-page", usersBookings);
 });
 
 app.use("/", (req, res) => {

@@ -85,6 +85,8 @@ app.post("/login", async (req, res) => {
       res.render("/login", { error: "Wrong username or password" });
     }
   });
+});
+
 app.post("/logout", async (req, res) => {
   res.cookie("token", "", { maxAge: 0 });
   res.redirect("/");

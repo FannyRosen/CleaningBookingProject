@@ -80,3 +80,37 @@ form {
   color: gray;
   text-decoration: none;
 }
+
+nav{
+ 
+ 
+  background-color: #c0d6bf;
+  padding: 20px;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+  margin-left: 30px;
+}
+
+a:hover{
+  color: rgb(88, 86, 86);
+}
+
+.all-bookings{
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: #c0d6bf;
+}
+
+.finished-bookings{
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: #c0d6bf;
+}

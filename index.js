@@ -1,5 +1,5 @@
 require("dotenv").config();
-require("./mongoose");
+require("./mongoose.js");
 
 const express = require("express");
 const exphbs = require("express-handlebars");
@@ -8,7 +8,7 @@ const cookieParser = require("cookie-parser");
 
 const UsersModel = require("./models/UsersModel.js");
 const BookingsModel = require("./models/BookingsModel.js");
-const utils = require("./utils");
+const utils = require("./utils.js");
 
 const app = express();
 
@@ -21,10 +21,6 @@ app.set("view engine", "hbs");
 app.use(express.static("public"));
 
 app.use(cookieParser());
-
-app.get("/", (req, res) => {
-  res.render("register");
-});
 
 app.use((req, res, next) => {
   const { token } = req.cookies;
@@ -39,6 +35,10 @@ app.use((req, res, next) => {
     res.locals.loggedIn = false;
   }
   next();
+});
+
+app.get("/", (req, res) => {
+  res.render("register");
 });
 
 app.post("/", (req, res) => {
@@ -86,11 +86,23 @@ app.post("/login", async (req, res) => {
   });
 });
 
-app.post("/logout", async (req, res) => {
-  res.cookie("token", "", { maxAge: 0 });
-  res.redirect("/");
+app.get("/home", (req, res) => {
+  res.render("home");
 });
 
+app.post("/home", async (req, res) => {
+  const newBooking = new BookingsModel({
+    cleanerName: req.body.cleanerName,
+    service: req.body.service,
+    date: parseInt(new Date().toLocaleString()),
+  });
+
+  await newBooking.save();
+
+  res.redirect("/my-page");
+});
+
+// Borde det va my-page/:id?
 app.get("/my-page", (req, res) => {
   // const bookings = BookingsModel.find().lean()
 
@@ -103,20 +115,9 @@ app.get("/my-page", (req, res) => {
   res.render("my-page", usersBookings);
 });
 
-app.get("/booking", (req, res) => {
-  res.render("home");
-});
-
-app.post("/booking", async (req, res) => {
-  const newBooking = new BookingsModel({
-    cleanerName: req.body.cleanerName,
-    service: req.body.service,
-    time: req.body.time,
-  });
-
-  await newBooking.save();
-
-  res.redirect("/mypage");
+app.post("/logout", (req, res) => {
+  res.cookie("token", "", { maxAge: 0 });
+  res.redirect("/");
 });
 
 app.use("/", (req, res) => {

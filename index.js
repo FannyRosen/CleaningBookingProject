@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 
 const UsersModel = require("./models/UsersModel.js");
+const BookingsModel = require("./models/BookingsModel.js");
 const utils = require("./utils");
 
 const app = express();
@@ -100,6 +101,22 @@ app.get("/my-page", (req, res) => {
   // });
 
   res.render("my-page", usersBookings);
+});
+
+app.get("/booking", (req, res) => {
+  res.render("home");
+});
+
+app.post("/booking", async (req, res) => {
+  const newBooking = new BookingsModel({
+    cleanerName: req.body.cleanerName,
+    service: req.body.service,
+    time: req.body.time,
+  });
+
+  await newBooking.save();
+
+  res.redirect("/mypage");
 });
 
 app.use("/", (req, res) => {

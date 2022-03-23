@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 
 const UsersModel = require("./models/UsersModel.js");
+const BookingsModel = require("./models/BookingsModel.js");
 const utils = require("./utils");
 
 const app = express();
@@ -90,6 +91,22 @@ app.post("/login", async (req, res) => {
 app.post("/logout", async (req, res) => {
   res.cookie("token", "", { maxAge: 0 });
   res.redirect("/");
+});
+
+app.get("/booking", (req, res) => {
+  res.render("home");
+});
+
+app.post("/booking", async (req, res) => {
+  const newBooking = new BookingsModel({
+    cleanerName: req.body.cleanerName,
+    service: req.body.service,
+    time: req.body.time,
+  });
+
+  await newBooking.save();
+
+  res.redirect("/mypage");
 });
 
 app.use("/", (req, res) => {

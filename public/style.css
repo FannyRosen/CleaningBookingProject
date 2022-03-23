@@ -81,9 +81,10 @@ form {
   text-decoration: none;
 }
 
-nav{
- 
- 
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #c0d6bf;
   padding: 20px;
   text-align: center;
@@ -91,24 +92,42 @@ nav{
   font-weight: 500;
 }
 
-a{
+a {
   text-decoration: none;
   color: black;
   margin-left: 30px;
 }
 
-a:hover{
+a:hover {
   color: rgb(88, 86, 86);
 }
 
-.all-bookings{
+.logout-form input {
+  border: none;
+  background-color: #c0d6bf;
+  cursor: pointer;
+  background-color: #c0d6bf;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: black;
+  margin-left: 30px;
+  margin-bottom: -17px;
+}
+
+.logout-form input:hover {
+  color: rgb(88, 86, 86);
+}
+
+.all-bookings {
   display: flex;
   flex-direction: column;
   border-radius: 10px;
   background-color: #c0d6bf;
 }
 
-.finished-bookings{
+.finished-bookings {
   display: flex;
   flex-direction: column;
   border-radius: 10px;

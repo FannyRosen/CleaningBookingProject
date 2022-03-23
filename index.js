@@ -103,7 +103,7 @@ app.post("/home", async (req, res) => {
 });
 
 // Borde det va my-page/:id?
-app.get("/my-page", (req, res) => {
+app.get("/my-page/:id", (req, res) => {
   // const bookings = BookingsModel.find().lean()
 
   const usersBookings = [];

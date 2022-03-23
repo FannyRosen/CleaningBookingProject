@@ -11,8 +11,10 @@
     {{#if loggedIn}}
       <nav>
         <a href="/home">Hem</a>
-        <a href="/my-page/{{id}}">Mina sidor</a>
-        <a href="/logout">Logga ut</a>
+        <a href="/my-page">Mina sidor</a>
+        <form class="logout-form" action="/logout" method="post">
+          <input type="submit" value="Logga ut" />
+        </form>
       </nav>
     {{/if}}
 

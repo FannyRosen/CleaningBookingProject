@@ -14,7 +14,19 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 
-app.engine("hbs", exphbs.engine({ extname: ".hbs", defaultLayout: "main" }));
+app.engine(
+  "hbs",
+  exphbs.engine({
+    extname: ".hbs",
+    defaultLayout: "main",
+    helpers: {
+      formatDate: (time) => {
+        const date = new Date(time);
+        return date.toLocaleDateString();
+      },
+    },
+  })
+);
 
 app.set("view engine", "hbs");
 
@@ -61,7 +73,12 @@ app.post("/", (req, res) => {
 
       await newUser.save();
 
-      res.sendStatus(200);
+      const userData = { username, userId: newUser._id.toString() };
+      const accessToken = jwt.sign(userData, process.env.JWTSECRET);
+
+      res.cookie("token", accessToken);
+
+      res.redirect("/home");
     }
   });
 });
@@ -94,25 +111,29 @@ app.post("/home", async (req, res) => {
   const newBooking = new BookingsModel({
     cleanerName: req.body.cleanerName,
     service: req.body.service,
-    date: parseInt(new Date().toLocaleString()),
+    date: req.body.date,
+    time: req.body.time,
+    bookedBy: res.locals.id,
   });
 
   await newBooking.save();
 
-  res.redirect("/my-page");
+  res.redirect("/my-page/" + res.locals.id);
 });
 
 // Borde det va my-page/:id?
-app.get("/my-page/:id", (req, res) => {
-  // const bookings = BookingsModel.find().lean()
+app.get("/my-page/:id", async (req, res) => {
+  const bookings = await BookingsModel.find().lean();
 
-  const usersBookings = [];
+  const userBookings = [];
 
-  // bookings.forEach((item) => {
-  //   if (item.customer === res.locals.id) usersBookings.push(item);
-  // });
+  for (const item of bookings) {
+    if (item.bookedBy == res.locals.id) {
+      userBookings.push(item);
+    }
+  }
 
-  res.render("my-page", usersBookings);
+  res.render("my-page", { userBookings });
 });
 
 app.post("/logout", (req, res) => {

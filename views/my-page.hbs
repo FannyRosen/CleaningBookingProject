@@ -1,17 +1,19 @@
 <h2> {{username}} </h2>
 
-{{#each usersBookings}}
+{{#each userBookings}}
 
   <div class="all-bookings">
 
-    {{#if done}}
+    {{#if notDone}}
 
       <h3>Kommande städningar</h3>
 
       <div class="upcoming-bookings">
 
-        <p>{{date}}</p>
-        <p>{{type}}</p>
+        <p>{{formatDate date}}</p>
+        <p>{{time}}</p>
+        <p>{{service}}</p>
+        <p>{{cleanerName}}</p>
 
       </div>
 

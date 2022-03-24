@@ -22,6 +22,13 @@ body {
   font-weight: 500;
 }
 
+.book-h2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px;
+}
+
 .main-register-container {
   margin-top: 100px;
   display: flex;
@@ -29,10 +36,42 @@ body {
   align-items: center;
 }
 
+select{
+  width: 200px;
+  margin: 10px;
+}
+
+select::-ms-value {
+  background: none; /* remove blue background on ie10/ie11 when selected*/
+  color:#5a5a5a;
+
+}
+.select-arrow{
+  position: relative;
+}
+
+.select-selected {
+  background-color: #c0d6bf;
+  text-decoration: none;
+}
+
+input{
+  width: 200px;
+  margin: 10px;
+}
+
+#boka{
+  width: 50px;
+  margin: 10px;
+  background-color: #c0d6bf;
+  border: 1px solid black;
+  border-radius: 5px;
+}
 form {
   display: flex;
   align-items: center;
   flex-direction: column;
+
 }
 
 .form-group {
@@ -130,14 +169,13 @@ a:hover {
 h3{
   padding-left: 30px;
 }
-
 .all-bookings {
-  margin: 30px;
-  padding: 30px;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
   background-color: #c0d6bf;
+  padding: 30px;
+  margin: 30px;
 }
 
 .finished-bookings {
@@ -162,9 +200,11 @@ h3{
 .delete-form{
   display: flex;
   align-items: flex-start;
+  padding-left: 0;
 }
 
-.delete-btn{
+#delete-btn{
   padding: 20px;
- 
+  margin: 0;
+  width: 60px;
 }

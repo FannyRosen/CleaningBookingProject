@@ -1,11 +1,13 @@
   <div class="delete-booking">
 
-        <p>{{date}}</p>
-        <p>{{type}}</p>
+         <p>{{formatDate date}}</p>
+        <p>{{time}}</p>
+        <p>{{service}}</p>
+        <p>{{cleanerName}}</p>
 
-      <h4>Vill du ta bort den här bokningen??</h4>
+      <h4>Vill du ta bort den här bokningen?</h4>
    
-    <form action="/my-page/{{_id}}/delete" method="post">
-      <input type="submit" value="Delete" />
+    <form action="/{{_id}}/delete" method="post" class="delete-form">
+      <input type="submit" value="Ta bort"/>
     </form>
-     </div>
+    </div>

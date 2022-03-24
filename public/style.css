@@ -122,7 +122,18 @@ a:hover {
   color: rgb(88, 86, 86);
 }
 
+.username{
+  padding-left: 30px;
+  font-style: italic;
+}
+
+h3{
+  padding-left: 30px;
+}
+
 .all-bookings {
+  margin: 30px;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -134,4 +145,26 @@ a:hover {
   flex-direction: column;
   border-radius: 10px;
   background-color: #c0d6bf;
+}
+
+.delete-link{
+  margin-left: 0;
+  font-weight:800;
+}
+
+.delete-booking{
+  margin: 30px;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: #c0d6bf;
+}
+
+.delete-form{
+  display: flex;
+  align-items: flex-start;
+}
+
+.delete-btn{
+  padding: 20px;
+ 
 }

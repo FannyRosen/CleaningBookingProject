@@ -22,7 +22,7 @@ body {
   font-weight: 500;
 }
 
-.book-h2{
+.book-h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,17 +36,16 @@ body {
   align-items: center;
 }
 
-select{
+select {
   width: 200px;
   margin: 10px;
 }
 
 select::-ms-value {
   background: none; /* remove blue background on ie10/ie11 when selected*/
-  color:#5a5a5a;
-
+  color: #5a5a5a;
 }
-.select-arrow{
+.select-arrow {
   position: relative;
 }
 
@@ -55,12 +54,12 @@ select::-ms-value {
   text-decoration: none;
 }
 
-input{
+input {
   width: 200px;
   margin: 10px;
 }
 
-#boka{
+#boka {
   width: 50px;
   margin: 10px;
   background-color: #c0d6bf;
@@ -71,7 +70,6 @@ form {
   display: flex;
   align-items: center;
   flex-direction: column;
-
 }
 
 .form-group {
@@ -136,7 +134,7 @@ nav {
 a {
   text-decoration: none;
   color: black;
-  margin-left: 30px;
+  margin-left: 60px;
 }
 
 a:hover {
@@ -153,20 +151,19 @@ a:hover {
   font-weight: 500;
   text-decoration: none;
   color: black;
-  margin-left: 30px;
-  margin-bottom: -17px;
+  margin-bottom: -12.5px;
 }
 
 .logout-form input:hover {
   color: rgb(88, 86, 86);
 }
 
-.username{
+.username {
   padding-left: 30px;
   font-style: italic;
 }
 
-h3{
+h3 {
   padding-left: 30px;
 }
 .all-bookings {
@@ -185,25 +182,25 @@ h3{
   background-color: #c0d6bf;
 }
 
-.delete-link{
+.delete-link {
   margin-left: 0;
-  font-weight:800;
+  font-weight: 800;
 }
 
-.delete-booking{
+.delete-booking {
   margin: 30px;
   padding: 30px;
   border-radius: 10px;
   background-color: #c0d6bf;
 }
 
-.delete-form{
+.delete-form {
   display: flex;
   align-items: flex-start;
   padding-left: 0;
 }
 
-#delete-btn{
+#delete-btn {
   padding: 20px;
   margin: 0;
   width: 60px;

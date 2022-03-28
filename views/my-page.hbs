@@ -1,12 +1,12 @@
-<h2> {{username}} </h2>
+<h2 class="username"> {{username}} </h2>
+
+ <h3>Kommande städningar</h3>
 
 {{#each userBookings}}
 
   <div class="all-bookings">
 
     {{#if notDone}}
-
-      <h3>Kommande städningar</h3>
 
       <div class="upcoming-bookings">
 
@@ -15,6 +15,10 @@
         <p>{{service}}</p>
         <p>{{cleanerName}}</p>
 
+      </div>
+
+      <div class="delete">
+        <a href="/{{_id}}/delete" class="delete-link">Ta bort</a>
       </div>
 
     {{else}}

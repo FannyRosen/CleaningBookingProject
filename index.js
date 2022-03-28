@@ -136,6 +136,17 @@ app.get("/my-page/:id", async (req, res) => {
   res.render("my-page", { userBookings });
 });
 
+app.get("/:id/delete", async (req,res)=>{
+  const booking = await BookingsModel.findById(req.params.id).lean();
+  res.render("delete", booking);
+})
+
+app.post("/:id/delete", async (req, res) => {
+  await BookingsModel.findById(req.params.id).deleteOne();
+
+  res.redirect("/my-page/" + res.locals.id);
+});
+
 app.post("/logout", (req, res) => {
   res.cookie("token", "", { maxAge: 0 });
   res.redirect("/");

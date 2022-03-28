@@ -1,28 +1,30 @@
 <div class="hero-container">
   <div class="main-booking-container">
-    <h2>Boka Städ</h2>
+    <h2 class="book-h2">Boka Städning</h2>
     <form action="/home" method="post">
       <label for="cleanerName">Vem vill du boka?</label>
-      <select name="cleanerName" id="cleanerName">
-        <option value="1">Städare 1</option>
-        <option value="2">Städare 2</option>
-        <option value="3">Städare 3</option>
-        <option value="3">Städare 4
+
+      <select name="cleanerName" id="cleanerName" class="select-selected">
+        <option value="Städare 1">Städare 1</option>
+        <option value="Städare 2">Städare 2</option>
+        <option value="Städare 3">Städare 3</option>
+        <option value="Städare 3">Städare 4
 
         </option>
       </select>
+
       <label for="service">Vad för typ av städ?</label>
-      <select name="service" id="service">
-        <option value="basic">Basic städning</option>
-        <option value="top">Topp städning</option>
-        <option value="diamond">Diamant städning</option>
-        <option value="window">Fönstertvätt</option>
+      <select name="service" id="service" class="select-selected">
+        <option value="Basic städning">Basic städning</option>
+        <option value="Top städning">Topp städning</option>
+        <option value="Diamant Städning">Diamant städning</option>
+        <option value="Fönstertvätt">Fönstertvätt</option>
       </select>
-      <label for="date">När?</label>
+      <label for="date">Datum?</label>
       <input type="date" name="date" id="date" />
-      <label for="time">När?</label>
+      <label for="time">Tid?</label>
       <input type="time" name="time" id="time" />
-      <input type="submit" value="Boka" />
+      <input type="submit" value="Boka" id="boka" />
     </form>
   </div>
 </div>

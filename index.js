@@ -113,6 +113,7 @@ app.post("/home", async (req, res) => {
     service: req.body.service,
     date: req.body.date,
     time: req.body.time,
+    info: req.body.info,
     bookedBy: res.locals.id,
   });
 
@@ -121,7 +122,6 @@ app.post("/home", async (req, res) => {
   res.redirect("/my-page/" + res.locals.id);
 });
 
-// Borde det va my-page/:id?
 app.get("/my-page/:id", async (req, res) => {
   const bookings = await BookingsModel.find().lean();
 

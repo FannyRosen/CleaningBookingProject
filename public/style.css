@@ -93,7 +93,7 @@ form {
 
 .label {
   position: absolute;
-  left: 0;
+  left: 10px;
   top: 3;
   pointer-events: none;
   transition: all 0.2s ease;

@@ -113,6 +113,7 @@ app.post("/home", async (req, res) => {
     service: req.body.service,
     date: req.body.date,
     time: req.body.time,
+    info: req.body.info,
     bookedBy: res.locals.id,
   });
 
@@ -121,7 +122,6 @@ app.post("/home", async (req, res) => {
   res.redirect("/my-page/" + res.locals.id);
 });
 
-// Borde det va my-page/:id?
 app.get("/my-page/:id", async (req, res) => {
   const bookings = await BookingsModel.find().lean();
 
@@ -136,10 +136,10 @@ app.get("/my-page/:id", async (req, res) => {
   res.render("my-page", { userBookings });
 });
 
-app.get("/:id/delete", async (req,res)=>{
+app.get("/:id/delete", async (req, res) => {
   const booking = await BookingsModel.findById(req.params.id).lean();
   res.render("delete", booking);
-})
+});
 
 app.post("/:id/delete", async (req, res) => {
   await BookingsModel.findById(req.params.id).deleteOne();

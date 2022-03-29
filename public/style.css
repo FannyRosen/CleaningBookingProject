@@ -93,7 +93,7 @@ form {
 
 .label {
   position: absolute;
-  left: 0;
+  left: 10px;
   top: 3;
   pointer-events: none;
   transition: all 0.2s ease;
@@ -120,6 +120,8 @@ form {
   margin: 0;
 }
 
+/* NAVIGERING */
+
 nav {
   display: flex;
   align-items: center;
@@ -141,6 +143,8 @@ a:hover {
   color: rgb(88, 86, 86);
 }
 
+/* LOGOUT */
+
 .logout-form input {
   border: none;
   background-color: #c0d6bf;
@@ -157,6 +161,8 @@ a:hover {
 .logout-form input:hover {
   color: rgb(88, 86, 86);
 }
+
+/* MY PAGE */
 
 .username {
   padding-left: 30px;

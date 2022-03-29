@@ -5,6 +5,7 @@ const bookingsSchema = new Schema({
   service: { type: String, required: true },
   date: { type: Date, required: true },
   time: { type: String, required: true },
+  info: { type: String, required: false },
   notDone: { type: Boolean, required: true, default: true },
   approved: { type: Boolean },
   bookedBy: {
